@@ -1,0 +1,10 @@
+# Binaries
+*.exe
+*.out
+
+# Env files
+.env
+
+# Editor folders
+.vscode/
+.idea/
