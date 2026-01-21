@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func Sum(arr []int) int {
 	s := 0
@@ -50,13 +53,102 @@ func ReverseArray2(arr []int) {
 	}
 }
 
-func CheckArraySorted(arr []int)bool{
+func CheckArraySorted(arr []int) bool {
 	first := 0
-	for first < len(arr)-1{
-		if arr[first] > arr[first+1]{
+	for first < len(arr)-1 {
+		if arr[first] > arr[first+1] {
 			return false
 		}
-		first+=1
+		first += 1
 	}
 	return true
+}
+
+func SecondLargestElement(arr []int) (int, bool) {
+	fmt.Println("Input Array: ", arr)
+	var maxEle, secondMaxEle int
+	if len(arr) < 2 {
+		return secondMaxEle, false
+	}
+
+	for _, curr_ele := range arr {
+		if curr_ele > maxEle {
+			maxEle = curr_ele
+		}
+	}
+
+	for _, curr_ele := range arr {
+		if curr_ele > secondMaxEle && curr_ele < maxEle {
+			fmt.Println(maxEle, secondMaxEle)
+			secondMaxEle = curr_ele
+		}
+	}
+
+	if maxEle == secondMaxEle {
+		return 0, false
+	}
+	return secondMaxEle, true
+}
+
+func SecondLargestElement2(arr []int) (int, bool) {
+	fmt.Println("Input Array: ", arr)
+	var maxEle, secondMaxEle int = math.MinInt, math.MinInt
+	if len(arr) < 2 {
+		return secondMaxEle, false
+	}
+	// maxEle, secondMaxEle
+	for _, curr_ele := range arr {
+		if curr_ele > maxEle {
+			secondMaxEle = maxEle
+			maxEle = curr_ele
+		}
+		if curr_ele > secondMaxEle && maxEle > curr_ele {
+			secondMaxEle = curr_ele
+		}
+
+	}
+
+	if maxEle == secondMaxEle {
+		return 0, false
+	}
+	return secondMaxEle, true
+}
+
+// []int{1, 2, 3, 4, 5}
+func GetkSizeSum(arr []int, k int) []int {
+	if len(arr) == 0 || k > len(arr) || k == 0 {
+		return []int{}
+	}
+	start, end := 0, len(arr)
+	out := []int{0}
+	for _, v := range arr[:k] {
+		out[0] += v
+	}
+
+	for start+k < end {
+		out = append(out, out[start]-arr[start]+arr[start+k])
+		start += 1
+	}
+	return out
+}
+
+// []int{1, 2, 3, 4, 5}
+func GetkSizeSum2(arr []int, k int) []int {
+	n := len(arr)
+	if len(arr) == 0 || k <= 0 || k > n {
+		return []int{}
+	}
+	start, end := 0, len(arr)
+	out := make([]int, 0, n-k)
+	windowSum := 0
+	for _, v := range arr[:k] {
+		windowSum += v
+	}
+	out = append(out, windowSum)
+	for start+k < end {
+		currSum := out[start] - arr[start] + arr[start+k]
+		out = append(out, currSum)
+		start += 1
+	}
+	return out
 }
