@@ -7,7 +7,7 @@ func TwoSumPbm(arr []int, target int) []int {
 	for index, curr_ele := range arr {
 		diff := target - curr_ele
 		if i, ok := hash[diff]; ok {
-			return []int{index, i}
+			return []int{i, index}
 		}
 		hash[curr_ele] = index
 	}

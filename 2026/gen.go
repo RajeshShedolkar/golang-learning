@@ -11,3 +11,13 @@ func Sum(arr []int) int {
 	fmt.Println(s)
 	return s
 }
+
+func MaxEle(arr []int) int {
+	max := arr[0]
+	for _, v := range arr {
+		if v > max {
+			max = v
+		}
+	}
+	return max
+}
