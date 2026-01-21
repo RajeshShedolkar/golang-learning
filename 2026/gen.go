@@ -224,3 +224,33 @@ func CountFreqOfElement(arr []int) map[int]int {
 	}
 	return hash
 }
+
+func IsTwoArrayEq(arr1 []int, arr2 []int) bool {
+	if len(arr1) != len(arr2) {
+		return false
+	}
+	hash1 := makeHash(arr1)
+	hash2 := makeHash(arr2)
+	for k1, v1 := range hash1 {
+		if v2, ok := hash2[k1]; ok {
+			if v1 != v2 {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
+func makeHash(arr []int) map[int]int {
+	hash := make(map[int]int)
+	for _, v := range arr {
+		if _, ok := hash[v]; !ok {
+			hash[v] = 1
+		} else {
+			hash[v] += 1
+		}
+	}
+	return hash
+}

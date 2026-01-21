@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"reflect"
+	"testing"
 )
 
 //import "fmt"
@@ -39,10 +40,13 @@ func main() {
 	// MoveAllZeroToEnd(s2)
 	//TestCaseForMoveZero()
 	//fmt.Println(s2)
-	TestHashMapFrqPbm()
+	// TestHashMapFrqPbm()
+	arr1 := []int{2, 3, 5}
+	arr2 := []int{5, 3, 1}
+	fmt.Println(IsTwoArrayEq(arr1, arr2))
 }
 
-func TestCaseKSum() {
+func TestCaseKSum(t *testing.T) {
 	tests := []struct {
 		name     string
 		arr      []int
@@ -134,8 +138,7 @@ func TestCaseForMoveZero() {
 	}
 }
 
-
-func TestHashMapFrqPbm(){
+func TestHashMapFrqPbm() {
 	tests := []struct {
 		name     string
 		input    []int
