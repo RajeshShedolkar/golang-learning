@@ -192,3 +192,21 @@ func MoveZerosToEndByPreservingNonZeroOrder(arr []int) []int{
 	}
 	return arr
 }
+// Cleaned-Up Idiomatic Go Version
+func MoveZerosToEndByPreservingNonZeroOrderGo(arr []int) []int {
+	writeIdx := 0
+
+	for i := 0; i < len(arr); i++ {
+		if arr[i] != 0 {
+			arr[writeIdx] = arr[i]
+			writeIdx++
+		}
+	}
+
+	for writeIdx < len(arr) {
+		arr[writeIdx] = 0
+		writeIdx++
+	}
+
+	return arr
+}
