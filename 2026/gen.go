@@ -21,3 +21,32 @@ func MaxEle(arr []int) int {
 	}
 	return max
 }
+
+func ReverseArray(arr *[]int){
+	start, end := 0, len(*arr)-1
+	mid := len(*arr)/2
+	fmt.Println(start, end, mid)
+	for i:=0;i<mid;i++{
+		(*arr)[start], (*arr)[end] = swap((*arr)[start], (*arr)[end])
+		start += 1
+		end -= 1
+	}
+	fmt.Println(*arr)
+}
+
+func swap(a int, b int)(int, int){
+	temp := a
+	a = b
+	b = temp
+	return a, b
+}
+
+func ReverseArray2(arr []int) {
+	start, end := 0, len(arr)-1
+
+	for start < end {
+		arr[start], arr[end] = arr[end], arr[start]
+		start++
+		end--
+	}
+}
