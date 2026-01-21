@@ -37,8 +37,9 @@ func main() {
 	// TestCaseKSum()
 	//s2 := []int{0, 0, 0}
 	// MoveAllZeroToEnd(s2)
-	TestCaseForMoveZero()
+	//TestCaseForMoveZero()
 	//fmt.Println(s2)
+	TestHashMapFrqPbm()
 }
 
 func TestCaseKSum() {
@@ -128,6 +129,78 @@ func TestCaseForMoveZero() {
 			fmt.Printf(
 				"❌ %s failed |input=%v expected=%v got=%v\n",
 				tc.name, tc.input, tc.expected, result,
+			)
+		}
+	}
+}
+
+
+func TestHashMapFrqPbm(){
+	tests := []struct {
+		name     string
+		input    []int
+		expected map[int]int
+	}{
+		// 1. Basic case
+		{
+			"basic_case",
+			[]int{1, 2, 2, 3, 3, 3},
+			map[int]int{1: 1, 2: 2, 3: 3},
+		},
+
+		// 2. Single element
+		{
+			"single_element",
+			[]int{5},
+			map[int]int{5: 1},
+		},
+
+		// 3. All elements same
+		{
+			"all_same",
+			[]int{7, 7, 7, 7},
+			map[int]int{7: 4},
+		},
+
+		// 4. Empty array
+		{
+			"empty_array",
+			[]int{},
+			map[int]int{},
+		},
+
+		// 5. Negative numbers
+		{
+			"negative_numbers",
+			[]int{-1, -1, -2, -3, -3},
+			map[int]int{-1: 2, -2: 1, -3: 2},
+		},
+
+		// 6. Mixed positive and negative
+		{
+			"mixed_values",
+			[]int{0, 1, -1, 0, 1},
+			map[int]int{0: 2, 1: 2, -1: 1},
+		},
+
+		// 7. Large input (sanity check)
+		{
+			"large_input",
+			[]int{1, 1, 2, 2, 3, 3, 3, 3},
+			map[int]int{1: 2, 2: 2, 3: 4},
+		},
+	}
+
+	for _, tc := range tests {
+		// 👉 Replace CountFrequency with your implementation
+		result := CountFreqOfElement(tc.input)
+
+		if reflect.DeepEqual(result, tc.expected) {
+			fmt.Printf("✅ %s passed\n", tc.name)
+		} else {
+			fmt.Printf(
+				"❌ %s failed | expected=%v got=%v\n",
+				tc.name, tc.expected, result,
 			)
 		}
 	}

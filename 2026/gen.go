@@ -155,7 +155,7 @@ func GetkSizeSum2(arr []int, k int) []int {
 
 // Arrays: Move all zeros to the end
 // {1, 1, 0}
-func MoveZerosToEnd(arr []int) []int{
+func MoveZerosToEnd(arr []int) []int {
 	start, end := 0, len(arr)-1
 	for start < end {
 		if arr[start] != 0 {
@@ -175,23 +175,24 @@ func MoveZerosToEnd(arr []int) []int{
 	return arr
 }
 
-func MoveZerosToEndByPreservingNonZeroOrder(arr []int) []int{
+func MoveZerosToEndByPreservingNonZeroOrder(arr []int) []int {
 	start, n := 0, len(arr)
 	countNonZero := 0
 
-	for i:=0;i< n; i++ {
-		if arr[i] != 0{
-			arr[start]=arr[i]
-			countNonZero+=1
-			start+=1
+	for i := 0; i < n; i++ {
+		if arr[i] != 0 {
+			arr[start] = arr[i]
+			countNonZero += 1
+			start += 1
 		}
 	}
-	for countNonZero < n{
-		arr[countNonZero]=0
-		countNonZero+=1
+	for countNonZero < n {
+		arr[countNonZero] = 0
+		countNonZero += 1
 	}
 	return arr
 }
+
 // Cleaned-Up Idiomatic Go Version
 func MoveZerosToEndByPreservingNonZeroOrderGo(arr []int) []int {
 	writeIdx := 0
@@ -209,4 +210,17 @@ func MoveZerosToEndByPreservingNonZeroOrderGo(arr []int) []int {
 	}
 
 	return arr
+}
+
+func CountFreqOfElement(arr []int) map[int]int {
+	hash := make(map[int]int)
+
+	for _, v := range arr {
+		if _, ok := hash[v]; !ok {
+			hash[v] = 1
+		} else {
+			hash[v] += 1
+		}
+	}
+	return hash
 }
