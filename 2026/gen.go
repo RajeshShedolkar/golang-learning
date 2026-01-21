@@ -158,17 +158,37 @@ func GetkSizeSum2(arr []int, k int) []int {
 func MoveZerosToEnd(arr []int) []int{
 	start, end := 0, len(arr)-1
 	for start < end {
-		for start < end && arr[start] != 0 {
+		if arr[start] != 0 {
 			start += 1
+			continue
 		}
-		for start < end && arr[end] == 0 {
+		if arr[end] == 0 {
 			end -= 1
+			continue
 		}
 		if start < end {
 			arr[start], arr[end] = arr[end], arr[start]
 			start += 1
 			end -= 1
 		}
+	}
+	return arr
+}
+
+func MoveZerosToEndByPreservingNonZeroOrder(arr []int) []int{
+	start, n := 0, len(arr)
+	countNonZero := 0
+
+	for i:=0;i< n; i++ {
+		if arr[i] != 0{
+			arr[start]=arr[i]
+			countNonZero+=1
+			start+=1
+		}
+	}
+	for countNonZero < n{
+		arr[countNonZero]=0
+		countNonZero+=1
 	}
 	return arr
 }
