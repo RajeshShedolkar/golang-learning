@@ -152,3 +152,23 @@ func GetkSizeSum2(arr []int, k int) []int {
 	}
 	return out
 }
+
+// Arrays: Move all zeros to the end
+// {1, 1, 0}
+func MoveZerosToEnd(arr []int) []int{
+	start, end := 0, len(arr)-1
+	for start < end {
+		for start < end && arr[start] != 0 {
+			start += 1
+		}
+		for start < end && arr[end] == 0 {
+			end -= 1
+		}
+		if start < end {
+			arr[start], arr[end] = arr[end], arr[start]
+			start += 1
+			end -= 1
+		}
+	}
+	return arr
+}
