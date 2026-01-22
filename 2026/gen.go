@@ -254,3 +254,30 @@ func makeHash(arr []int) map[int]int {
 	}
 	return hash
 }
+
+
+func GetRpeatedEle(arr []int)(int, bool){
+    hash := make(map[int]bool)
+    for _, currEle := range arr{
+        
+        if _, ok := hash[currEle]; !ok{
+            hash[currEle] = true
+        }else{
+            return currEle, true
+        }
+        
+    }
+    return 0, false
+}
+
+func GetRpeatedEle2(arr []int)(int, bool){
+	hash := make(map[int]bool)
+
+	for _, ele := range arr{
+		if hash[ele]{
+			return ele, true
+		}
+		hash[ele] = true
+	}
+	return 0, false
+}
