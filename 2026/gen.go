@@ -281,3 +281,13 @@ func GetRpeatedEle2(arr []int)(int, bool){
 	}
 	return 0, false
 }
+
+func ValidateParenthesis(s string) bool{
+	// {(abc+xyz*[1+2])}()
+	str := []rune(s)
+	n := len(str)
+	stack := []rune("")
+	stack = append(stack, "a") 
+	
+
+}
