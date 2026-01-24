@@ -44,6 +44,8 @@ func main() {
 	arr1 := []int{2, 3, 5}
 	arr2 := []int{5, 3, 1}
 	fmt.Println(IsTwoArrayEq(arr1, arr2))
+	str := "{(abc+xyz*[1+2])}()"
+	fmt.Println("Parenthesis Match: ", ValidateParenthesis(str))
 }
 
 func TestCaseKSum(t *testing.T) {
