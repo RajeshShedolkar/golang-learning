@@ -5,13 +5,17 @@ type Queue struct{
 	arr []int
 	front int
 	rear int
+	size int
+	capacity int
 }
 
-func InitQueue() *Queue{
+func InitQueue(capacity int) *Queue{
 	return &Queue{
-		arr: []int{},
-		front: -1,
+		arr: make([]int, capacity),
+		front: 0,
 		rear: -1,
+		size: 0,
+		capacity: capacity,
 	}
 }
 
