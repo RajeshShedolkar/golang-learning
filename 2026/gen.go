@@ -280,3 +280,17 @@ func GetRpeatedEle2(arr []int) (int, bool) {
 	}
 	return 0, false
 }
+
+func MinElement(arr []int) (int, bool) {
+	if len(arr) == 0 {
+		return 0, false
+	}
+	minEle := arr[0]
+
+	for _, curr := range arr {
+		if curr < minEle {
+			minEle = curr
+		}
+	}
+	return minEle, true
+}
