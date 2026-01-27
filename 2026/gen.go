@@ -294,3 +294,13 @@ func MinElement(arr []int) (int, bool) {
 	}
 	return minEle, true
 }
+
+func countEvenNum(arr []int) int {
+	count := 0
+	for _, curr := range arr {
+		if curr%2 == 0 {
+			count += 1
+		}
+	}
+	return count
+}
