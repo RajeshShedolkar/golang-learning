@@ -304,3 +304,23 @@ func countEvenNum(arr []int) int {
 	}
 	return count
 }
+
+func CheckPalindrome(arr []int) bool {
+	if len(arr) < 2 {
+		return true
+	}
+	mid := len(arr) / 2
+	left, right := mid, mid
+	if len(arr)%2 == 0 {
+		left = mid - 1
+	}
+
+	for left >= 0 && right < len(arr) {
+		if arr[left] != arr[right] {
+			return false
+		}
+		left -= 1
+		right += 1
+	}
+	return true
+}
