@@ -8,22 +8,6 @@ type Node struct {
 	right *Node
 }
 
-// type Queue struct{
-// 	arr []int
-// 	capacity int
-// 	size int
-// 	front int
-// 	rear int
-// }
-
-// func (q *Queue) EnQueue(){
-
-// }
-
-// func (q *Queue) DeQueue(){
-
-// }
-
 func NewNode(val int) *Node {
 	return &Node{
 		val:   val,
