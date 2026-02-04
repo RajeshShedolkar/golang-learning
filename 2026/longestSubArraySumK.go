@@ -3,38 +3,25 @@ package main
 import "fmt"
 
 func findMaxLenSubArray(arr []int, k int) (int, int) {
-	if len(arr) <= 0 {
-		return -1, -1
-	}
-	start, end := 0, 0
-	size := 1
-	for size <= len(arr) {
-		currSizeSum := sumArrSize(arr, size)
-		currStart, currEnd := 0, size
-		for currEnd < len(arr) {
-			if currSizeSum == k {
-				if (currEnd - currStart) > (end - start) {
-					start = currStart
-					end = currEnd
+	maxLen := 0
+	startIdx, endIdx := -1, -1
+
+	for i := 0; i < len(arr); i++ {
+		sum := 0
+		for j := i; j < len(arr); j++ {
+			sum += arr[j]
+			if sum == k {
+				if j-i+1 > maxLen {
+					maxLen = j - i + 1
+					startIdx = i
+					endIdx = j
 				}
 			}
-
-			currStart += 1
-			currEnd += 1
 		}
-		size += 1
-
 	}
-	return start, end
+	return startIdx, endIdx
 }
 
-func sumArrSize(arr []int, size int) int {
-	sumArr := 0
-	for i := 0; i < size; i++ {
-		sumArr += arr[i]
-	}
-	return sumArr
-}
 
 func main() {
 	arr := []int{2, 3, 1, 2, 4, 3}
