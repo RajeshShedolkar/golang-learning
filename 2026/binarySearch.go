@@ -5,7 +5,7 @@ import "fmt"
 func BinarySearch(arr []int, target int) (int, error) {
 
 	start, end := 0, len(arr)-1
-
+// 1 2 3 4
 	for start <= end {
 		mid := (start + end) / 2
 		if arr[mid] == target {
@@ -21,5 +21,6 @@ func BinarySearch(arr []int, target int) (int, error) {
 }
 
 func main() {
-	
+	arr := []int{1, 2, 3, 4, 5}
+	fmt.Println(BinarySearch(arr, 1))
 }
