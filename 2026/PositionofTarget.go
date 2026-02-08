@@ -42,13 +42,35 @@ func positionOfTarget2(arr []int, target int) []int {
 }
 
 func getMinInd(arr []int, ind int) int {
-
-	return ind
+	start, end := 0, ind-1
+	target := arr[ind]
+	min_ind := ind
+	for start <= end {
+		mid := (start + end) / 2
+		if arr[mid] == target {
+			min_ind = mid
+			end = mid - 1
+		} else {
+			start = mid + 1
+		}
+	}
+	return min_ind
 }
 
 func getMaxInd(arr []int, ind int) int {
-
-	return ind
+	start, end := ind+1, len(arr)-1
+	target := arr[ind]
+	max_ind := ind
+	for start <= end {
+		mid := (start + end) / 2
+		if arr[mid] == target {
+			max_ind = mid
+			start = mid + 1
+		} else {
+			end = mid - 1
+		}
+	}
+	return max_ind
 }
 
 func getTarget(arr []int, target int) (int, error) {
@@ -68,9 +90,9 @@ func getTarget(arr []int, target int) (int, error) {
 }
 
 func main() {
-	arr := []int{1, 2, 2, 2, 3, 4, 5}
+	arr := []int{1, 2, 2, 2, 2, 2, 3, 4, 5}
 	target := 2
 	fmt.Println("Input arr: ", arr, "Target: ", target)
-	fmt.Println(positionOfTarget(arr, target))
+	fmt.Println(positionOfTarget2(arr, target))
 
 }
