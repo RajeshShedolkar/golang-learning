@@ -3,27 +3,29 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
-var counter int
-var mu sync.Mutex
+var balance int
 
-func increment(wg *sync.WaitGroup) {
+func addMoney(wg *sync.WaitGroup) {
 	defer wg.Done()
 
-	mu.Lock()         // 🔒 lock
-	counter++
-	mu.Unlock()       // 🔓 unlock
+	tmp := balance           // read
+	time.Sleep(1 * time.Millisecond)
+	tmp = tmp + 100          // modify
+	time.Sleep(1 * time.Millisecond)
+	balance = tmp            // write
 }
 
 func main() {
 	var wg sync.WaitGroup
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 2; i++ {
 		wg.Add(1)
-		go increment(&wg)
+		go addMoney(&wg)
 	}
 
-	// wg.Wait()
-	defer fmt.Println("Final Counter:", counter)
+	wg.Wait()
+	fmt.Println("Final Balance:", balance)
 }
