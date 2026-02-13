@@ -26,6 +26,7 @@ func groupAnagrams(strs []string) [][]string {
 	return result
 }
 
+
 func main() {
 	strs := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	fmt.Println(groupAnagrams(strs))

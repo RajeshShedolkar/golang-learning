@@ -2,13 +2,34 @@ package main
 
 import "fmt"
 
-func maxSlidingWindow(nums []int, k int) []int {
-	if len(nums) == 0 || k == 0 {
+func pop(arr []int) []int {
+	if len(arr) == 0 {
+		return arr
+	}
+	return arr[1:]
+}
+func popFromBack(arr []int)[]int{
+	return arr[:len(arr)-1]
+}
+
+func maxSlidingWindow(arr []int, k int) []int {
+	if len(arr) == 0 || k == 0 {
 		return []int{}
 	}
-	// Write the Logic
-
 	result := make([]int, 0)
+	// Write the Logic
+	que := make([]int, len(arr), len(arr))
+	for i, v := range arr {
+		if len(que)==0{
+			que = append(que, v)
+		} 
+		j := i
+		for que[j-1]< v{
+			
+			que = popFromBack(que)
+			que = append(que, v)
+		}
+	}
 
 	return result
 }
