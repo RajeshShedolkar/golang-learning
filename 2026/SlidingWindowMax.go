@@ -2,14 +2,12 @@ package main
 
 import "fmt"
 
-func pop(arr []int) []int {
-	if len(arr) == 0 {
-		return arr
+func pushDecresing(q []int, val int) []int {
+	for len(q) > 0 && q[len(q)-1] < val {
+		q = q[:len(q)-1]
 	}
-	return arr[1:]
-}
-func popFromBack(arr []int)[]int{
-	return arr[:len(arr)-1]
+	q = append(q, val)
+	return q
 }
 
 func maxSlidingWindow(arr []int, k int) []int {
@@ -17,18 +15,11 @@ func maxSlidingWindow(arr []int, k int) []int {
 		return []int{}
 	}
 	result := make([]int, 0)
-	// Write the Logic
 	que := make([]int, len(arr), len(arr))
+
 	for i, v := range arr {
-		if len(que)==0{
-			que = append(que, v)
-		} 
-		j := i
-		for que[j-1]< v{
-			
-			que = popFromBack(que)
-			que = append(que, v)
-		}
+		que = pushDecresing(que, v)
+		fmt.Println("Iteration: ",i, "Queue: ", que)
 	}
 
 	return result
