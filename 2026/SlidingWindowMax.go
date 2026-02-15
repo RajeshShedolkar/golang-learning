@@ -10,16 +10,31 @@ func pushDecresing(q []int, val int) []int {
 	return q
 }
 
+func pushDecresingIndex(arr []int, q []int, index int) []int {
+	for len(q) > 0 && arr[q[len(q)-1]] < arr[index] {
+		q = q[:len(q)-1]
+	}
+	q = append(q, index)
+	return q
+}
+
 func maxSlidingWindow(arr []int, k int) []int {
 	if len(arr) == 0 || k == 0 {
 		return []int{}
 	}
 	result := make([]int, 0)
-	que := make([]int, len(arr), len(arr))
+	que := make([]int, 0, len(arr))
+	que1 := make([]int, 0, len(arr))
 
+	s := 0
 	for i, v := range arr {
-		que = pushDecresing(que, v)
-		fmt.Println("Iteration: ",i, "Queue: ", que)
+		que1 = pushDecresing(que1, v)
+		que = pushDecresingIndex(arr, que, i)
+		fmt.Println("Iteration: ", i, "Queue: ", que, que1)
+		if i-s+1 == k {
+			result = append(result, arr[que[0]])
+			s+=1
+		}
 	}
 
 	return result
