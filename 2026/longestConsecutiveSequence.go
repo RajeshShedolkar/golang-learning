@@ -69,6 +69,46 @@ func longestConsecutive(nums []int) int {
 	return maxLen
 }
 
+func longestConsecutive1(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	set := make(map[int]struct{})
+	for _, v := range nums {
+		// We use map[int]struct{} as a set.
+		// struct{} is an empty struct that occupies 0 bytes of memory.
+		// We only care about key existence, not storing any value.
+		// So struct{}{} represents inserting a key with zero memory overhead.
+
+		set[v] = struct{}{}
+	}
+
+	maxLen := 0
+
+	for _, v := range nums {
+		if _, exists := set[v-1]; !exists {
+			curr := v
+			length := 1
+
+			for {
+				if _, ok := set[curr+1]; ok {
+					curr++
+					length++
+				} else {
+					break
+				}
+			}
+
+			if length > maxLen {
+				maxLen = length
+			}
+		}
+	}
+
+	return maxLen
+}
+
 func main() {
 	arr := []int{7, 3, 4, 5, 1, 2, 0}
 	fmt.Println(longestConsecutive(arr))
