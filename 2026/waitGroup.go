@@ -27,7 +27,7 @@ func (wg *MyWaitGroup) Add(n int) {
 	}
 
 	if wg.counter == 0 {
-		wg.cond.Broadcast() // wake up all waiting goroutines
+		wg.cond.Broadcast()
 	}
 }
 
@@ -40,7 +40,7 @@ func (wg *MyWaitGroup) Wait() {
 	defer wg.mutex.Unlock()
 
 	for wg.counter > 0 {
-		wg.cond.Wait() // sleep until Broadcast()
+		wg.cond.Wait()
 	}
 }
 
