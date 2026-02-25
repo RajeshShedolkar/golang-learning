@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func pushDecresing(q []int, val int) []int {
-	for len(q) > 0 && q[len(q)-1] < val {
+	for len(q) > 0 && q[len(q)-1] <= val {
 		q = q[:len(q)-1]
 	}
 	q = append(q, val)
