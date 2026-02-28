@@ -12,7 +12,7 @@ func reverseArr(arr []int) []int {
 	return arr
 }
 
-func isArrSortedAsc(arr []int)bool {
+func isArrSorted(arr []int)bool {
 	asc_flag := true
 	dsc_flag := true
 	for i:=1;i<len(arr);i++{
@@ -20,15 +20,20 @@ func isArrSortedAsc(arr []int)bool {
 			asc_flag = false
 		}
 		if dsc_flag && arr[i]>arr[i-1]{
-			
+			dsc_flag = false
+		}
+
+		if !asc_flag && !dsc_flag{
+			return false
 		}
 	}
-	return true
+	return asc_flag || dsc_flag
 }
 
 
 func main() {
-	arr := []int{1, 2, 3, 4, 5, 6}
+	//arr := []int{1, 2, 3, 4, 5, 6}
+	arr := []int{2, 1, 2, 3, 4}
 	fmt.Println(reverseArr(arr))
 	fmt.Println("isSorted: ", arr, isArrSorted(arr))
 }
