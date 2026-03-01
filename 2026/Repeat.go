@@ -30,10 +30,30 @@ func isArrSorted(arr []int)bool {
 	return asc_flag || dsc_flag
 }
 
+func moveAllZerosAtEnd(arr []int)[]int{
+	count := 0
+
+	for _, v := range arr {
+		if v==1{
+			count+=1
+		}
+	}
+	for i:=0; i<len(arr); i++{
+		if i < count{
+			arr[i] = 1
+		}else {
+			arr[i] = 0
+		}
+		
+	}
+	return arr
+}
 
 func main() {
 	//arr := []int{1, 2, 3, 4, 5, 6}
 	arr := []int{2, 1, 2, 3, 4}
 	fmt.Println(reverseArr(arr))
 	fmt.Println("isSorted: ", arr, isArrSorted(arr))
+	a := []int{1, 0, 1, 0, 0, 1, 1, 0}
+	fmt.Println(moveAllZerosAtEnd(a))
 }
