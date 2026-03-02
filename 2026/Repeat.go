@@ -48,11 +48,23 @@ func moveAllZerosAtEnd(arr []int) []int {
 	return arr
 }
 
+func checkArrayHasDuplicates(arr []int)bool{
+	hash := make(map[int]bool)
+	for _, v := range arr{
+		if _, err := hash[v]; err{
+			hash[v]=true
+		}else{
+			return true
+		}
+	}
+	return false
+}
+
 func main() {
 	//arr := []int{1, 2, 3, 4, 5, 6}
 	arr := []int{2, 1, 2, 3, 4}
 	fmt.Println(reverseArr(arr))
 	fmt.Println("isSorted: ", arr, isArrSorted(arr))
 	a := []int{0, 1, 0, 3, 12}
-	fmt.Println(moveAllZerosAtEnd(a))
+	fmt.Println(checkArrayHasDuplicates(a))
 }
