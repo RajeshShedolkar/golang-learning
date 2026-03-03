@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func reverseArr(arr []int) []int {
 	start, end := 0, len(arr)-1
@@ -60,11 +63,35 @@ func checkArrayHasDuplicates(arr []int)bool{
 	return false
 }
 
+func SecondLargestElement(arr []int) (int, bool) {
+	if len(arr) < 2 {
+		return 0, false
+	}
+
+	maxEle := math.MinInt
+	secondMax := math.MinInt
+
+	for _, v := range arr {
+		if v > maxEle {
+			secondMax = maxEle
+			maxEle = v
+		} else if v > secondMax && v < maxEle {
+			secondMax = v
+		}
+	}
+
+	if secondMax == math.MinInt {
+		return 0, false
+	}
+
+	return secondMax, true
+}
+
 func main() {
 	//arr := []int{1, 2, 3, 4, 5, 6}
 	arr := []int{2, 1, 2, 3, 4}
 	fmt.Println(reverseArr(arr))
 	fmt.Println("isSorted: ", arr, isArrSorted(arr))
 	a := []int{0, 1, 0, 3, 12}
-	fmt.Println(checkArrayHasDuplicates(a))
+	fmt.Println(SecondLargestElement(a))
 }
