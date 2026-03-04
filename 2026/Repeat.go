@@ -87,6 +87,25 @@ func SecondLargestElement(arr []int) (int, bool) {
 	return secondMax, true
 }
 
+func IsTwoArrayEq(arr1 []int, arr2 []int) bool {
+	if len(arr1) != len(arr2) {
+		return false
+	}
+	hash1 := makeHash(arr1)
+	hash2 := makeHash(arr2)
+	for k1, v1 := range hash1 {
+		if v2, ok := hash2[k1]; ok {
+			if v1 != v2 {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
+
 func main() {
 	//arr := []int{1, 2, 3, 4, 5, 6}
 	arr := []int{2, 1, 2, 3, 4}
