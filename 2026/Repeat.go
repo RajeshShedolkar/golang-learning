@@ -106,6 +106,28 @@ func IsTwoArrayEq(arr1 []int, arr2 []int) bool {
 }
 
 
+func maxSlidingWindow(arr []int, k int) []int {
+	if len(arr) == 0 || k == 0 {
+		return []int{}
+	}
+	result := make([]int, 0)
+	que := make([]int, 0, len(arr))
+	que1 := make([]int, 0, len(arr))
+
+	s := 0
+	for i, v := range arr {
+		que1 = pushDecresing(que1, v)
+		que = pushDecresingIndex(arr, que, i)
+		fmt.Println("Iteration: ", i, "Queue: ", que, que1)
+		if i-s+1 == k {
+			result = append(result, arr[que[0]])
+			s+=1
+		}
+	}
+
+	return result
+}
+
 func main() {
 	//arr := []int{1, 2, 3, 4, 5, 6}
 	arr := []int{2, 1, 2, 3, 4}
